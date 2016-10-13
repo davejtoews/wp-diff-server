@@ -1,0 +1,12 @@
+{
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/kbjr/Git.php.git"
+        }
+	],
+    "minimum-stability": "dev",
+    "require": {
+        "kbjr/Git.php": "dev-master"
+    }
+}

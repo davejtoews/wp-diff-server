@@ -1,0 +1,47 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "8101b18436b073355d732642573adf31",
+    "content-hash": "57a571fbe767b38fbeac6338bdebfd99",
+    "packages": [
+        {
+            "name": "kbjr/Git.php",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kbjr/Git.php.git",
+                "reference": "0d1a99625d45bccda222389bbe6135482b407782"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kbjr/Git.php/zipball/0d1a99625d45bccda222389bbe6135482b407782",
+                "reference": "0d1a99625d45bccda222389bbe6135482b407782",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "Git.php"
+                ]
+            },
+            "support": {
+                "source": "https://github.com/kbjr/Git.php/tree/master",
+                "issues": "https://github.com/kbjr/Git.php/issues"
+            },
+            "time": "2015-03-31 14:10:29"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "kbjr/git.php": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}
