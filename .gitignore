@@ -1,3 +1,4 @@
-config.php
-/vendor
-/markup
+/vendor/
+/logs/*
+!/logs/README.md
+/markup/
