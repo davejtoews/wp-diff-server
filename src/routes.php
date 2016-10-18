@@ -34,6 +34,10 @@ $app->post('/commit', function ($request, $response, $args) {
 
 	$repo = false;
 
+	if (!is_dir($params['path'])) {
+	    mkdir($params['path'], 0755, true);
+	}
+
 	try {
 		$repo = Git::open($params['path']);
 	} catch (Exception $e) {
@@ -64,6 +68,10 @@ $app->post('/checkout', function ($request, $response, $args) {
 
 	$repo = false;
 
+	if (!is_dir($params['path'])) {
+	    mkdir($params['path'], 0755, true);
+	}
+
 	try {
 		$repo = Git::open($params['path']);
 	} catch (Exception $e) {
@@ -72,14 +80,21 @@ $app->post('/checkout', function ($request, $response, $args) {
 
 	if (!$repo) {
 		$repo = Git::create($params['path']);
+		return $response->withJson($repo->status());
 	}
 
-	try {
-		$repo->checkout($params['branch']);
-	} catch (Exception $e) {
-		$repo->create_branch($params['branch']);
-		$repo->checkout($params['branch']);
+	$this->logger->addInfo($params['branch']);
+	if ($params['branch'] != 'master') {
+		try {
+			$repo->checkout($params['branch']);
+		} catch (Exception $e) {
+			$this->logger->addInfo('failed checkout');
+			$repo->create_branch($params['branch']);
+			$repo->checkout($params['branch']);
+		}		
 	}
+
+	$this->logger->addInfo('after branch');
 
     // Render index view
     return $response->withJson($repo->status());
