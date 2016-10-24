@@ -46,6 +46,8 @@ $app->post('/commit', function ($request, $response, $args) {
 
 	if (!$repo) {
 		$repo = Git::create($params['path']);
+		$repo->run(' config  user.email "davejtoews@gmail.com"'); 
+		$repo->run(' config  user.name "davejtoews"');   
 	}
 
 	$repo->add('.');
@@ -53,6 +55,7 @@ $app->post('/commit', function ($request, $response, $args) {
 	try {
 		$repo->commit(time());
 	} catch (Exception $e) {
+		$this->logger->addInf(print_r($e['message'], true));
 		return $response->withJson(array('error'=>"Failed to commit"));
 	}
 
@@ -80,6 +83,8 @@ $app->post('/checkout', function ($request, $response, $args) {
 
 	if (!$repo) {
 		$repo = Git::create($params['path']);
+		$repo->run(' config  user.email "davejtoews@gmail.com"'); 
+		$repo->run(' config  user.name "davejtoews"');   
 		return $response->withJson($repo->status());
 	}
 
