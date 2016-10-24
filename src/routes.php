@@ -55,7 +55,7 @@ $app->post('/commit', function ($request, $response, $args) {
 	try {
 		$repo->commit(time());
 	} catch (Exception $e) {
-		$this->logger->addInfo(print_r($e['message'], true));
+		$this->logger->addInfo(print_r($e, true));
 		return $response->withJson(array('error'=>"Failed to commit"));
 	}
 
