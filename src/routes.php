@@ -99,3 +99,13 @@ $app->post('/checkout', function ($request, $response, $args) {
     // Render index view
     return $response->withJson($repo->status());
 });
+
+$app->get('/test', function ($request, $response, $args) {
+    // Sample log message
+    $this->logger->info("'/test' route");
+
+    $output = array("test"=>true);
+
+    // Render index view
+    return $response->withJson($output);
+});
