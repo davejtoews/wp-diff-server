@@ -1,5 +1,7 @@
 <?php
 // Routes
+// 
+// 
 
 $app->post('/', function ($request, $response, $args) {
     // Sample log message
@@ -38,6 +40,9 @@ $app->post('/commit', function ($request, $response, $args) {
 	    mkdir($params['path'], 0755, true);
 	}
 
+	$repo->run(' config  user.email "davejtoews@gmail.com"'); 
+	$repo->run(' config  user.name "davejtoews"');   
+
 	try {
 		$repo = Git::open($params['path']);
 	} catch (Exception $e) {
@@ -46,8 +51,6 @@ $app->post('/commit', function ($request, $response, $args) {
 
 	if (!$repo) {
 		$repo = Git::create($params['path']);
-		$repo->run(' config  user.email "davejtoews@gmail.com"'); 
-		$repo->run(' config  user.name "davejtoews"');   
 	}
 
 	$repo->add('.');
@@ -83,8 +86,6 @@ $app->post('/checkout', function ($request, $response, $args) {
 
 	if (!$repo) {
 		$repo = Git::create($params['path']);
-		$repo->run(' config  user.email "davejtoews@gmail.com"'); 
-		$repo->run(' config  user.name "davejtoews"');   
 		return $response->withJson($repo->status());
 	}
 
