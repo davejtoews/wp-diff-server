@@ -38,10 +38,7 @@ $app->post('/commit', function ($request, $response, $args) {
 
 	if (!is_dir($params['path'])) {
 	    mkdir($params['path'], 0755, true);
-	}
-
-	$repo->run(' config  user.email "davejtoews@gmail.com"'); 
-	$repo->run(' config  user.name "davejtoews"');   
+	}  
 
 	try {
 		$repo = Git::open($params['path']);
@@ -53,6 +50,8 @@ $app->post('/commit', function ($request, $response, $args) {
 		$repo = Git::create($params['path']);
 	}
 
+	$repo->run(' config  user.email "davejtoews@gmail.com"'); 
+	$repo->run(' config  user.name "davejtoews"'); 
 	$repo->add('.');
 
 	try {
@@ -76,7 +75,7 @@ $app->post('/checkout', function ($request, $response, $args) {
 
 	if (!is_dir($params['path'])) {
 	    mkdir($params['path'], 0755, true);
-	}
+	}	
 
 	try {
 		$repo = Git::open($params['path']);
@@ -89,7 +88,9 @@ $app->post('/checkout', function ($request, $response, $args) {
 		return $response->withJson($repo->status());
 	}
 
-	$this->logger->addInfo($params['branch']);
+	$repo->run(' config  user.email "davejtoews@gmail.com"'); 
+	$repo->run(' config  user.name "davejtoews"'); 
+
 	if ($params['branch'] != 'master') {
 		try {
 			$repo->checkout($params['branch']);
